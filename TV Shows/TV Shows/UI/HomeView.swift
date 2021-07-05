@@ -11,6 +11,9 @@ struct HomeView: View {
     var body: some View {
         Text("Hello, world!")
             .padding()
+            .onAppear() {
+                TVShowsDataManager.shared.populateCurrentPageOfTVShows()
+            }
     }
 }
 
