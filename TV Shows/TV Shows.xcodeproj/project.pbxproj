@@ -14,6 +14,7 @@
 		6C0E6EE126935AB4003AB833 /* TVShowsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE026935AB4003AB833 /* TVShowsDataManager.swift */; };
 		6C0E6EE426937C13003AB833 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE326937C13003AB833 /* Page.swift */; };
 		6C0E6EE626937DD0003AB833 /* TVShowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE526937DD0003AB833 /* TVShowResult.swift */; };
+		6C42997226947B0700FF2975 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C42997126947B0700FF2975 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		6C0E6EE026935AB4003AB833 /* TVShowsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsDataManager.swift; sourceTree = "<group>"; };
 		6C0E6EE326937C13003AB833 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		6C0E6EE526937DD0003AB833 /* TVShowResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowResult.swift; sourceTree = "<group>"; };
+		6C42997126947B0700FF2975 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				6C0E6ECF269356F2003AB833 /* TV_ShowsApp.swift */,
+				6C429970269479D600FF2975 /* View Models */,
 				6C0E6EDE269357E0003AB833 /* UI */,
 				6C0E6EDF26935943003AB833 /* Data Handling */,
 				6C0E6ED3269356F2003AB833 /* Assets.xcassets */,
@@ -100,6 +103,14 @@
 				6C0E6EE526937DD0003AB833 /* TVShowResult.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		6C429970269479D600FF2975 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				6C42997126947B0700FF2975 /* HomeViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C0E6ED2269356F2003AB833 /* HomeView.swift in Sources */,
+				6C42997226947B0700FF2975 /* HomeViewModel.swift in Sources */,
 				6C0E6ED0269356F2003AB833 /* TV_ShowsApp.swift in Sources */,
 				6C0E6EE626937DD0003AB833 /* TVShowResult.swift in Sources */,
 				6C0E6EE426937C13003AB833 /* Page.swift in Sources */,

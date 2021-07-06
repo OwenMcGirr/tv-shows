@@ -7,11 +7,20 @@
 
 import Foundation
 
+
+protocol TVShowsDataManagerDelegate {
+    func didUpdateListOfTVShows(with results: [TVShowResult])
+}
+
+
 /// This class manages the getting and sorting of the TV shows.
 class TVShowsDataManager: NSObject {
 
     /// Singleton object.
     static let shared = TVShowsDataManager()
+    
+    /// Delegate object.
+    public var delegate: TVShowsDataManagerDelegate?
   
     /// API key for the movie db.
     private let apiKey = "f74a7854d632252e53cf5310a94cadc9"
@@ -45,7 +54,7 @@ class TVShowsDataManager: NSObject {
                    let pageCount = page.total_pages {
                     self?.currentResults.append(contentsOf: results)
                     self?.numberOfAvailablePages = pageCount
-                    print(pageCount)
+                    self?.delegate?.didUpdateListOfTVShows(with: results)
                 }
             } catch {
                 print(error.localizedDescription)
