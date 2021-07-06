@@ -17,15 +17,20 @@ class TVShowsDataManager: NSObject {
     private let apiKey = "f74a7854d632252e53cf5310a94cadc9"
     
     /// The current page index of TV show results.
-    private var currentTVShowsPageIndex = 1
+    private var currentTVShowsPageIndex: Int?
     
-    /// The current page results.
-    private var currentPageResults: [TVShowResult] = []
+    /// The current TV show results.
+    private var currentResults: [TVShowResult] = []
+    
+    /// The number of available pages.
+    private var numberOfAvailablePages: Int?
     
     
-    /// This function gets the current page of TV show results.
-    func populateCurrentPageOfTVShows() {
-        let url = URL(string: "https://api.themoviedb.org/3/tv/popular?api_key=\(apiKey)&page=\(currentTVShowsPageIndex)")
+    /// This function gets the next page of TV show results and appends them
+    /// to the current ones.
+    private func appendNextPageOfTVShowResults() {
+        guard let index = currentTVShowsPageIndex else { return }
+        let url = URL(string: "https://api.themoviedb.org/3/tv/popular?api_key=\(apiKey)&page=\(index)")
         guard let url = url else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -36,13 +41,33 @@ class TVShowsDataManager: NSObject {
             guard let data = data else { return }
             do {
                 let page = try JSONDecoder().decode(Page.self, from: data)
-                if let results = page.results {
-                    self?.currentPageResults = results
+                if let results = page.results,
+                   let pageCount = page.total_pages {
+                    self?.currentResults.append(contentsOf: results)
+                    self?.numberOfAvailablePages = pageCount
+                    print(pageCount)
                 }
             } catch {
                 print(error.localizedDescription)
             }
         })
         task.resume()
+    }
+    
+    
+    /// This function is responsible for setting the current page index,
+    /// and calls the function to append the next page of TV show results
+    /// to the current ones.
+    public func setOrIncrementPageAndGetResults() {
+        if currentTVShowsPageIndex != nil {
+            if currentTVShowsPageIndex == numberOfAvailablePages { return }
+            
+            // increment page index and append results
+            currentTVShowsPageIndex! += 1
+            appendNextPageOfTVShowResults()
+        } else { // get first page
+            currentTVShowsPageIndex = 1
+            appendNextPageOfTVShowResults()
+        }
     }
 }

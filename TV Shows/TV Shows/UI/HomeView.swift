@@ -12,7 +12,7 @@ struct HomeView: View {
         Text("Hello, world!")
             .padding()
             .onAppear() {
-                TVShowsDataManager.shared.populateCurrentPageOfTVShows()
+                TVShowsDataManager.shared.setOrIncrementPageAndGetResults()
             }
     }
 }

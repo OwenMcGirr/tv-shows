@@ -8,5 +8,6 @@
 /// Represents a page returned by the movie db. 
 struct Page: Codable {
     let page: Int? // page number
-    let results: [TVShowResult]? 
+    let results: [TVShowResult]?
+    let total_pages: Int?
 }
