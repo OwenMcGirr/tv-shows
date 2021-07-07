@@ -54,7 +54,7 @@ class TVShowsDataManager: NSObject {
                    let pageCount = page.total_pages {
                     self?.currentResults.append(contentsOf: results)
                     self?.numberOfAvailablePages = pageCount
-                    self?.delegate?.didUpdateListOfTVShows(with: results)
+                    self?.delegate?.didUpdateListOfTVShows(with: self?.currentResults ?? [])
                 }
             } catch {
                 print(error.localizedDescription)
@@ -79,4 +79,14 @@ class TVShowsDataManager: NSObject {
             appendNextPageOfTVShowResults()
         }
     }
+    
+    
+    /// This function returns a Bool indicating whether or not the last page has been reached.
+    public func isOnLastPage() -> Bool {
+        guard currentTVShowsPageIndex != nil else {
+            return false
+        }
+        return currentTVShowsPageIndex! == numberOfAvailablePages
+    }
+    
 }

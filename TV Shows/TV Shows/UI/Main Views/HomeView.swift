@@ -13,10 +13,21 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(homeViewModel.currentTVShowResults, id: \.id) { result in
-                    TVShowResultCell(result: result)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding([.horizontal, .bottom])
+                LazyVStack(alignment: .center, spacing: 0) {
+                    ForEach(homeViewModel.currentTVShowResults, id: \.id) { result in
+                        TVShowResultCell(result: result)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.horizontal, .bottom])
+                            .onAppear {
+                                if homeViewModel.canFetchMoreResults {
+                                    homeViewModel.fetchMoreResultsIfNeeded(result: result)
+                                }
+                            }
+                    }
+                    if homeViewModel.isLoadingResults {
+                        Text("Loading...")
+                            .padding()
+                    }
                 }
             }
             .navigationTitle(Text("TV Shows"))
