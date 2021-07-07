@@ -58,6 +58,7 @@ fileprivate struct TVShowResultCell: View {
                     .padding()
                 Text(result.name ?? "")
                     .font(Font.system(size: 18))
+                    .foregroundColor(Color.black)
                 Spacer()
                 HStack(spacing: 3) {
                     Image(systemName: "heart")
