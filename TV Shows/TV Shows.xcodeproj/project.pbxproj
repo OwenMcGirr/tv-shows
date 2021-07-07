@@ -14,6 +14,9 @@
 		6C0E6EE126935AB4003AB833 /* TVShowsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE026935AB4003AB833 /* TVShowsDataManager.swift */; };
 		6C0E6EE426937C13003AB833 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE326937C13003AB833 /* Page.swift */; };
 		6C0E6EE626937DD0003AB833 /* TVShowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0E6EE526937DD0003AB833 /* TVShowResult.swift */; };
+		6C332BAA2695B4DA00226D0E /* URLImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C332BA92695B4DA00226D0E /* URLImageView.swift */; };
+		6C332BAC2695B60000226D0E /* URLImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C332BAB2695B60000226D0E /* URLImageViewModel.swift */; };
+		6C332BAE2695C88E00226D0E /* ImageBaseURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C332BAD2695C88E00226D0E /* ImageBaseURLs.swift */; };
 		6C42997226947B0700FF2975 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C42997126947B0700FF2975 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +30,9 @@
 		6C0E6EE026935AB4003AB833 /* TVShowsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowsDataManager.swift; sourceTree = "<group>"; };
 		6C0E6EE326937C13003AB833 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		6C0E6EE526937DD0003AB833 /* TVShowResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowResult.swift; sourceTree = "<group>"; };
+		6C332BA92695B4DA00226D0E /* URLImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageView.swift; sourceTree = "<group>"; };
+		6C332BAB2695B60000226D0E /* URLImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImageViewModel.swift; sourceTree = "<group>"; };
+		6C332BAD2695C88E00226D0E /* ImageBaseURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBaseURLs.swift; sourceTree = "<group>"; };
 		6C42997126947B0700FF2975 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,7 +88,8 @@
 		6C0E6EDE269357E0003AB833 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				6C0E6ED1269356F2003AB833 /* HomeView.swift */,
+				6C332BA82695B3F300226D0E /* Other */,
+				6C332BA72695B37E00226D0E /* Main Views */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -92,6 +99,7 @@
 			children = (
 				6C0E6EE226937B83003AB833 /* Data Models */,
 				6C0E6EE026935AB4003AB833 /* TVShowsDataManager.swift */,
+				6C332BAD2695C88E00226D0E /* ImageBaseURLs.swift */,
 			);
 			path = "Data Handling";
 			sourceTree = "<group>";
@@ -105,10 +113,27 @@
 			path = "Data Models";
 			sourceTree = "<group>";
 		};
+		6C332BA72695B37E00226D0E /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				6C0E6ED1269356F2003AB833 /* HomeView.swift */,
+			);
+			path = "Main Views";
+			sourceTree = "<group>";
+		};
+		6C332BA82695B3F300226D0E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				6C332BA92695B4DA00226D0E /* URLImageView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		6C429970269479D600FF2975 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
 				6C42997126947B0700FF2975 /* HomeViewModel.swift */,
+				6C332BAB2695B60000226D0E /* URLImageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -182,9 +207,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C332BAA2695B4DA00226D0E /* URLImageView.swift in Sources */,
 				6C0E6ED2269356F2003AB833 /* HomeView.swift in Sources */,
 				6C42997226947B0700FF2975 /* HomeViewModel.swift in Sources */,
+				6C332BAE2695C88E00226D0E /* ImageBaseURLs.swift in Sources */,
 				6C0E6ED0269356F2003AB833 /* TV_ShowsApp.swift in Sources */,
+				6C332BAC2695B60000226D0E /* URLImageViewModel.swift in Sources */,
 				6C0E6EE626937DD0003AB833 /* TVShowResult.swift in Sources */,
 				6C0E6EE426937C13003AB833 /* Page.swift in Sources */,
 				6C0E6EE126935AB4003AB833 /* TVShowsDataManager.swift in Sources */,

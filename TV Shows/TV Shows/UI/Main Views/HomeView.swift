@@ -42,8 +42,7 @@ fileprivate struct TVShowResultCell: View {
                 .fill(Color.white)
                 .shadow(radius: 8)
             HStack {
-                Image(systemName: "xmark")
-                    .resizable()
+                URLImageView(urlString: ImageBaseURLs.poster + (result.poster_path ?? ""))
                     .frame(width: 75, height: 125)
                     .padding()
                 Text(result.name ?? "")
