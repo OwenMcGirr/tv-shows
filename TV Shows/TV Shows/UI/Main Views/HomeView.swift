@@ -12,25 +12,30 @@ struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel()
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack(alignment: .center, spacing: 0) {
-                    ForEach(homeViewModel.currentTVShowResults, id: \.id) { result in
-                        TVShowResultCell(result: result)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding([.horizontal, .bottom])
-                            .onAppear {
-                                if homeViewModel.canFetchMoreResults {
-                                    homeViewModel.fetchMoreResultsIfNeeded(result: result)
+            VStack(spacing: 0) {
+                Text("TV Shows")
+                    .font(.largeTitle)
+                    .padding()
+                ScrollView {
+                    LazyVStack(alignment: .center, spacing: 0) {
+                        ForEach(homeViewModel.currentTVShowResults, id: \.id) { result in
+                            TVShowResultCell(result: result)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding([.horizontal, .top])
+                                .onAppear {
+                                    if homeViewModel.canFetchMoreResults {
+                                        homeViewModel.fetchMoreResultsIfNeeded(result: result)
+                                    }
                                 }
-                            }
-                    }
-                    if homeViewModel.isLoadingResults {
-                        Text("Loading...")
-                            .padding()
+                        }
+                        if homeViewModel.isLoadingResults {
+                            Text("Loading...")
+                                .padding()
+                        }
                     }
                 }
             }
-            .navigationTitle(Text("TV Shows"))
+            .navigationBarHidden(true)
         }
     }
 }
