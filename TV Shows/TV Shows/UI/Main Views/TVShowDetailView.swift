@@ -56,10 +56,14 @@ fileprivate struct MainvView: View {
                     TVShowBackdropAndNameView()
                         .frame(width: proxy.size.width, height: proxy.size.height / 3)
                 }
-                Text(tvShowDetailViewModel.overview)
-                    .font(Font.system(size: 24))
-                    .padding()
+                ScrollView {
+                    Text(tvShowDetailViewModel.overview)
+                        .font(Font.system(size: 24))
+                        .padding()
+                }
                 Spacer()
+                SimilarTVShowsListView()
+                    .padding()
             }
             
         }
@@ -107,6 +111,51 @@ fileprivate struct TVShowBackdropAndNameView: View {
                     .clipShape(Capsule())
                     .padding()
             }
+        }
+    }
+}
+
+
+
+
+
+
+
+/// This view shows the similar TV shows in a horizontal, scrollable list.
+fileprivate struct SimilarTVShowsListView: View {
+    @EnvironmentObject var tvShowDetailViewModel: TVShowDetailViewModel
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("You might also like...")
+                .font(.title.bold())
+            ScrollView(.horizontal) {
+                HStack {
+                    SimilarTVShowThumbnail(result: tvShowDetailViewModel.currentResult!)
+                    ForEach(tvShowDetailViewModel.similarTVShows, id: \.id) { result in
+                        SimilarTVShowThumbnail(result: result)
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+/// This view shows the related TV show poster and name.
+fileprivate struct SimilarTVShowThumbnail: View {
+    var result: TVShowResult
+    var body: some View {
+        VStack(spacing: 8) {
+            URLImageView(urlString: ImageBaseURLs.poster + (result.poster_path ?? ""))
+                .frame(width: 75, height: 125)
+            Text(result.name ?? "")
+                .frame(width: 75)
+                .lineLimit(1)
         }
     }
 }

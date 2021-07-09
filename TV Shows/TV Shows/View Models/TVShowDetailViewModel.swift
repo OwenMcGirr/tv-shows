@@ -18,8 +18,11 @@ class TVShowDetailViewModel: ObservableObject {
     /// The URL pointing to the image of the TV show backdrop.
     @Published var backdropURL: String = ""
     
+    /// Similar TV shows.
+    @Published var similarTVShows: [TVShowResult] = []
+    
     /// The current result being shown.
-    private var currentResult: TVShowResult?
+    public var currentResult: TVShowResult?
     
     
     init(result: TVShowResult?) {
@@ -29,6 +32,10 @@ class TVShowDetailViewModel: ObservableObject {
                                                selector: #selector(setResult),
                                                name: TVShowsDataManager.didChangeSelectedResultNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateSimilarTVShows),
+                                               name: TVShowsDataManager.didChangeSimilarResultsNotification,
+                                               object: nil)
     }
     
     
@@ -37,11 +44,22 @@ class TVShowDetailViewModel: ObservableObject {
         var res = currentResult
         if res == nil {
             res = TVShowsDataManager.shared.selectedResult
+            currentResult = res
         }
         guard let result = res else { return }
         name = result.name ?? ""
         overview = result.overview ?? ""
         backdropURL = ImageBaseURLs.backdrop + (result.backdrop_path ?? "")
+        
+        TVShowsDataManager.shared.getSimilarTVShows(for: result.id ?? 0)
+    }
+    
+    
+    /// This function updates the similar TV shows.
+    @objc func updateSimilarTVShows() {
+        DispatchQueue.main.async { [self] in
+            similarTVShows = TVShowsDataManager.shared.similarTVShows
+        }
     }
     
 }
