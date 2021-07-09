@@ -19,6 +19,9 @@ class TVShowsDataManager: NSObject {
     /// Singleton object.
     static let shared = TVShowsDataManager()
     
+    /// Indicates when the selected result has been changed.
+    static let didChangeSelectedResultNotification = Notification.Name("didChangeSelectedResultNotification")
+    
     /// Delegate object.
     public var delegate: TVShowsDataManagerDelegate?
   
@@ -33,6 +36,9 @@ class TVShowsDataManager: NSObject {
     
     /// The number of available pages.
     private var numberOfAvailablePages: Int?
+    
+    /// Represents the selected result.
+    public var selectedResult: TVShowResult?
     
     
     /// This function gets the next page of TV show results and appends them
@@ -87,6 +93,13 @@ class TVShowsDataManager: NSObject {
             return false
         }
         return currentTVShowsPageIndex! == numberOfAvailablePages
+    }
+    
+    
+    /// This function sets the current selected result.
+    func setSelectedResult(result: TVShowResult) {
+        selectedResult = result
+        NotificationCenter.default.post(Notification(name: TVShowsDataManager.didChangeSelectedResultNotification))
     }
     
 }

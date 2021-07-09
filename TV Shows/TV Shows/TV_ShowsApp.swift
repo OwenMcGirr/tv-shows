@@ -12,6 +12,7 @@ struct TV_ShowsApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(HomeViewModel())
         }
     }
 }
