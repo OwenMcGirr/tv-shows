@@ -47,40 +47,36 @@ fileprivate struct TVShowList: View {
             Text("TV Shows")
                 .font(.largeTitle)
                 .padding()
-            ScrollView {
-                LazyVStack(alignment: .center, spacing: 0) {
-                    ForEach(homeViewModel.currentTVShowResults, id: \.id) { result in
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            NavigationLink(destination: TVShowDetailView()
-                                            .environmentObject(TVShowDetailViewModel(result: result))) {
-                                TVShowResultCell(result: result)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .padding([.horizontal, .top])
-                                    .onAppear {
-                                        if homeViewModel.canFetchMoreResults {
-                                            homeViewModel.fetchMoreResultsIfNeeded(result: result)
-                                        }
-                                    }
+            List(homeViewModel.currentTVShowResults, id: \.id) { result in
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    NavigationLink(destination: TVShowDetailView()
+                                    .environmentObject(TVShowDetailViewModel(result: result))) {
+                        TVShowResultCell(result: result)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.horizontal, .top])
+                            .onAppear {
+                                if homeViewModel.canFetchMoreResults {
+                                    homeViewModel.fetchMoreResultsIfNeeded(result: result)
+                                }
                             }
-                        } else {
-                            TVShowResultCell(result: result)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .padding([.horizontal, .top])
-                                .onAppear {
-                                    if homeViewModel.canFetchMoreResults {
-                                        homeViewModel.fetchMoreResultsIfNeeded(result: result)
-                                    }
-                                }
-                                .onTapGesture {
-                                    TVShowsDataManager.shared.setSelectedResult(result: result)
-                                }
+                    }
+                } else {
+                    TVShowResultCell(result: result)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding([.horizontal, .top])
+                        .onAppear {
+                            if homeViewModel.canFetchMoreResults {
+                                homeViewModel.fetchMoreResultsIfNeeded(result: result)
+                            }
                         }
-                    }
-                    if homeViewModel.isLoadingResults {
-                        Text("Loading...")
-                            .padding()
-                    }
+                        .onTapGesture {
+                            TVShowsDataManager.shared.setSelectedResult(result: result)
+                        }
                 }
+            }
+            if homeViewModel.isLoadingResults {
+                Text("Loading...")
+                    .padding()
             }
         }
     }
