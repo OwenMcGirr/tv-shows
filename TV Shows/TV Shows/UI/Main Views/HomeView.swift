@@ -105,7 +105,7 @@ fileprivate struct TVShowResultCell: View {
                     Image(systemName: "heart")
                         .font(Font.system(size: 12))
                         .foregroundColor(Color.gray)
-                    Text(String(result.vote_count ?? 0))
+                    Text(String(result.vote_average ?? 0))
                         .font(Font.system(size: 12))
                         .foregroundColor(Color.gray)
                 }
