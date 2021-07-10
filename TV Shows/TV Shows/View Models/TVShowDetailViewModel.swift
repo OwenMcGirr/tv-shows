@@ -26,10 +26,14 @@ class TVShowDetailViewModel: ObservableObject {
     
     
     init(result: TVShowResult?) {
-        currentResult = result
-        setResult()
+        if result != nil {
+            currentResult = result
+        }
+        
+        updateResultAndRequestSimilarShows()
+        
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(setResult),
+                                               selector: #selector(updateResultAndRequestSimilarShows),
                                                name: TVShowsDataManager.didChangeSelectedResultNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
@@ -39,14 +43,12 @@ class TVShowDetailViewModel: ObservableObject {
     }
     
     
-    /// This function changes the current result.
-    @objc func setResult() {
-        var res = currentResult
-        if res == nil {
-            res = TVShowsDataManager.shared.selectedResult
-            currentResult = res
+    /// This function changes the current result and requests similar TV shows.
+    @objc func updateResultAndRequestSimilarShows() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            currentResult = TVShowsDataManager.shared.selectedResult
         }
-        guard let result = res else { return }
+        guard let result = currentResult else { return }
         name = result.name ?? ""
         overview = result.overview ?? ""
         backdropURL = ImageBaseURLs.backdrop + (result.backdrop_path ?? "")
