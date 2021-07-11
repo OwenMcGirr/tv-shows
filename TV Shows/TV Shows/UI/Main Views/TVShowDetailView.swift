@@ -30,9 +30,18 @@ struct TVShowDetailView_Previews: PreviewProvider {
 
 
 fileprivate struct EmptyDatailView: View {
+    @State var animationAmount: CGFloat = 1
     var body: some View {
         Text("Choose a TV show")
             .font(.title)
+            .scaleEffect(animationAmount)
+            .animation(
+                Animation.easeInOut(duration: 0.5)
+                    .repeatCount(10, autoreverses: true)
+            )
+            .onAppear {
+                animationAmount = 1.6
+            }
     }
 }
 
